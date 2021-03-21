@@ -1,5 +1,9 @@
 import random
 
+NUMBERS_PER_LINE = 6
+MINIMUM = 1
+MAXIMUM = 45
+
 
 def main():
     """Quick Pick Lottery Ticket Generator."""
@@ -14,11 +18,11 @@ def get_quick_picks(quick_picks: list, number_of_quick_picks):
     """Generates Quick Pick data."""
     for i in range(0, number_of_quick_picks):
         numbers = []
-        for j in range(0, 6):
+        for j in range(NUMBERS_PER_LINE):
             # store entire list in ith element of quick_pick_numbers
-            number = random.randint(1, 45)
+            number = random.randint(MINIMUM, MAXIMUM)
             while number in numbers:
-                number = random.randint(1, 45)
+                number = random.randint(MINIMUM, MAXIMUM)
             numbers.append(number)
         quick_picks.append(numbers)
     return quick_picks
@@ -33,7 +37,8 @@ def sort_quick_picks(quick_picks: list):
 def print_quick_picks(quick_picks: list):
     """Print formatted Quick Pick data."""
     for quick_pick in quick_picks:
-        print("{:2} {:2} {:2} {:2} {:2}".format(quick_pick[0], quick_pick[1], quick_pick[2], quick_pick[3], quick_pick[4]))
+        print("{:2} {:2} {:2} {:2} {:2}".format(quick_pick[0], quick_pick[1], quick_pick[2], quick_pick[3],
+                                                quick_pick[4]))
 
 
 main()
