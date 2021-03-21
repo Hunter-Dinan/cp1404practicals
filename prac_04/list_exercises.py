@@ -1,10 +1,9 @@
 numbers = []
-
 for i in range(0, 5):
     number_input = int(input("Number: "))
     numbers.append(number_input)
 
-average = sum(numbers)/5
+average = sum(numbers)/len(numbers)
 
 print("The first number is {}".format(numbers[0]))
 print("The last number is {}".format(numbers[-1]))

@@ -35,10 +35,10 @@ print(lowercase_full_names)
 almost_numbers = ['0', '10', '21', '3', '-7', '88', '9']
 # Use a list comprehension to create a list of integers
 # from the above list of strings
-numbers = [int(number) for number in almost_numbers]
+numbers = [int(almost_number) for almost_number in almost_numbers]
 print(numbers)
 
 # Use a list comprehension to create a list of only the numbers that are
 # greater than 9 from the numbers (not strings) you just created
-numbers_greater_than_9 = [number for number in numbers if number > 9]
-print(numbers_greater_than_9)
+large_numbers = [number for number in numbers if number > 9]
+print(large_numbers)
