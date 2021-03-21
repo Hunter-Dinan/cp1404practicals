@@ -12,7 +12,8 @@ print("The smallest number is {}".format(min(numbers)))
 print("The largest number is {}".format(max(numbers)))
 print("The average of the numbers is {}".format(average))
 
-usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface', 'BaseStdIn', 'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer', 'bob']
+usernames = ['jimbo', 'giltson98', 'derekf', 'WhatSup', 'NicolEye', 'swei45', 'BaseInterpreterInterface', 'BaseStdIn',
+             'Command', 'ExecState', 'InteractiveConsole', 'InterpreterInterface', 'StartServer', 'bob']
 username = input("Username: ")
 if username in usernames:
     print("Access granted")
