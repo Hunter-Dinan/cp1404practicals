@@ -4,7 +4,7 @@ from guitar import Guitar
 
 
 def main():
-    """Create list of user's guitars and display them."""
+    """Displays list of user's guitars."""
     guitars = []
 
     print("My Guitars!")
