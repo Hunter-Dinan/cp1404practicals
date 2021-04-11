@@ -14,8 +14,7 @@ class Guitar:
 
     def __str__(self):
         """String form of the instance."""
-        return "{} ({}) : ${}".format(self.name, self.year, self.cost)
-# TODO - edit the __str__ function to use decimal places and 20 spaces for name
+        return "{} ({}) : ${:,.2f}".format(self.name, self.year, self.cost)
 
     def get_age(self):
         age = CURRENT_YEAR - self.year
