@@ -11,7 +11,7 @@ class ProgrammingLanguage:
         self.year_created = int(year_created)
 
     def __str__(self):
-        """Prints the object."""
+        """String form of the instance."""
         return "{}, {} Typing, Reflection={}, First appeared in {}".format(self.name, self.typing,
                                                                            self.reflection, self.year_created)
 
