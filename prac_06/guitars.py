@@ -8,18 +8,15 @@ def main():
     guitars = []
 
     print("My Guitars!")
-    is_input_empty = False
-    while not is_input_empty:
+    name = input("Name: ")
+    while name != "":
+        year_created = input("Year: ")
+        cost = input("Cost: ")
+        guitar = Guitar(name, year_created, cost)
+        guitars.append(guitar)
+        print("{guitar} added.".format(guitar=guitar))
+        print()
         name = input("Name: ")
-        if name == "":
-            is_input_empty = True
-        else:
-            year_created = input("Year: ")
-            cost = input("Cost: ")
-            guitar = Guitar(name, year_created, cost)
-            guitars.append(guitar)
-            print("{guitar} added.".format(guitar=guitar))
-            print()
     print()
     display_guitars(guitars)
 
