@@ -9,8 +9,8 @@ class Guitar:
     def __init__(self, name="", year=0, cost=0):
         """Initialise a Guitar instance."""
         self.name = name
-        self.year = year
-        self.cost = cost
+        self.year = int(year)
+        self.cost = float(cost)
 
     def __str__(self):
         """String form of the instance."""
