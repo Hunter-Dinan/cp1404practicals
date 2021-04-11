@@ -6,9 +6,14 @@ class ProgrammingLanguage:
     def __init__(self, name, typing, reflection, year_created):
         """Initialise a ProgrammingLanguage instance."""
         self.name = name
-        self.typing = typing.title()
-        self.reflection = reflection.title()
-        self.year_created = int(year_created.title())
+        self.typing = typing
+        self.reflection = bool(reflection)
+        self.year_created = int(year_created)
+
+    def __str__(self):
+        """Prints the object."""
+        return "{}, {} Typing, Reflection={}, First appeared in {}".format(self.name, self.typing,
+                                                                           self.reflection, self.year_created)
 
     def is_dynamic(self):
         return self.typing == "Dynamic"
