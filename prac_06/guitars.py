@@ -21,18 +21,16 @@ def main():
             print("{guitar} added.".format(guitar=guitar))
             print()
     print()
-    display_guitars()
+    display_guitars(guitars)
 
 
 def display_guitars(guitars: list):
     """Displays guitar list."""
     print("These are my guitars:")
     for i, guitar in enumerate(guitars):
-        vintage_string = ""
-        if guitar.is_vintage():
-            vintage_string = " (vintage)"
-        print("Guitar {}: {:>20} ({}), worth $e{:10,.2f}{}".format(i + 1, guitar.name, guitar.year, guitar.cost,
-                                                                   vintage_string))
+        vintage_string = " (vintage)" if guitar.is_vintage() else ""
+        print("Guitar {}: {:>20} ({}), worth ${:10,.2f}{}".format(i + 1, guitar.name, guitar.year, guitar.cost,
+                                                                  vintage_string))
 
 
 main()
