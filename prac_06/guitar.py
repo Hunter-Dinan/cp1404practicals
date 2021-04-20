@@ -14,15 +14,13 @@ class Guitar:
         self.cost = float(cost)
 
     def __str__(self):
-        """String form of the instance."""
+        """Return string form of the Guitar instance."""
         return "{} ({}) : ${:,.2f}".format(self.name, self.year, self.cost)
 
     def get_age(self):
         """Get age of guitar."""
-        age = CURRENT_YEAR - self.year
-        return age
+        return CURRENT_YEAR - self.year
 
     def is_vintage(self):
         """Determine if a guitar is vintage or not based on VINTAGE_AGE."""
-        age = self.get_age()
-        return age >= VINTAGE_AGE
+        return self.get_age() >= VINTAGE_AGE

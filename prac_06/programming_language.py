@@ -12,7 +12,7 @@ class ProgrammingLanguage:
         self.year_created = int(year_created)
 
     def __str__(self):
-        """String form of the Programming Language instance."""
+        """Return string form of the Programming Language instance."""
         return "{}, {} Typing, Reflection={}, First appeared in {}".format(self.name, self.typing,
                                                                            self.reflection, self.year_created)
 
