@@ -1,4 +1,4 @@
-"""Kivy GUI program to convert miles to kilometres."""
+"""Kivy GUI program for converting miles to kilometres."""
 
 from kivy.app import App
 from kivy.lang import Builder
