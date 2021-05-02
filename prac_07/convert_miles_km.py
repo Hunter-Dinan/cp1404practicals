@@ -1,4 +1,4 @@
-"""Module Docstring..."""
+"""Kivy GUI program to convert miles to kilometres."""
 
 from kivy.app import App
 from kivy.lang import Builder
@@ -9,36 +9,37 @@ MILES_TO_KM_CONVERSION = 1.609
 
 
 class ConvertMilesToKmApp(App):
-    """docstring..."""
+    """Kivy App for converting miles to kilometres."""
     output_label = StringProperty()
 
     def build(self):
-        """docstring..."""
+        """Build Kivy App."""
         Window.size = (500, 200)
         self.title = 'Convert Miles to Kilometres'
         self.root = Builder.load_file('convert_miles_km.kv')
         return self.root
 
-    def handle_convert_m_to_km(self, input_number):
-        """docstring..."""
+    def handle_convert_mile_to_km(self, input_number):
+        """Handle converting miles to kilometres."""
         miles_input = self.get_valid_number(input_number)
         self.output_label = str(miles_input * MILES_TO_KM_CONVERSION)
 
     def handle_increment(self, increment_value):
-        """docstring..."""
+        """Handle incremental change in input text (from button or otherwise), and update input text."""
         miles_input = self.get_valid_number(self.root.ids.input_number.text)
         miles_input += increment_value
 
         self.root.ids.input_number.text = str(miles_input)
-        # self.handle_convert_m_to_km(miles_input)
+        # self.handle_convert_mile_to_km(miles_input)
+        # Above is redundant with the button disabled and on_text in use
 
     @staticmethod
     def get_valid_number(number_input):
-        """docstring..."""
+        """Convert input number to float or return 0.0."""
         try:
             number = float(number_input)
         except ValueError:
-            number = 0
+            number = 0.0
         return number
 
 
