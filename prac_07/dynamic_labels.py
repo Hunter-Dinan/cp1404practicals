@@ -7,7 +7,6 @@ from kivy.uix.label import Label
 
 class DynamicLabelGeneratorApp(App):
     """Kivy app for generating labels dynamically from a list."""
-
     def __init__(self):
         """Initialise Dynamic Label Generator."""
         super().__init__()
