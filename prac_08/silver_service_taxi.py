@@ -1,28 +1,27 @@
-"""module docstring."""
+"""Silver Service Taxi class, specialised version of Taxi"""
 
 from taxi import Taxi
 
 
 class SilverServiceTaxi(Taxi):
-    """docstring"""
+    """Silver Service Taxi, Specialised version of a Taxi class."""
     flagfall = 4.5
 
     def __init__(self, name, fuel, fanciness: float):
-        """docstring"""
+        """Initiate SilverServiceTaxi instance."""
         super().__init__(name, fuel)
         self.fanciness = float(fanciness)
         self.price_per_km = self.fanciness * self.price_per_km
 
-    def start_fare(self):
-        """docstring"""
-        super().start_fare()
-
     def get_fare(self):
-        """docstring"""
+        """Return the price for a taxi trip plus flagfall."""
         distance_fare = super().get_fare()
-        total_fare = distance_fare + self.flagfall
+        if self.current_fare_distance == 0:
+            total_fare = distance_fare
+        else:
+            total_fare = distance_fare + self.flagfall
         return total_fare
 
     def __str__(self):
-        """docstring"""
+        """Return string representation of Silver Service Taxi instance."""
         return "{} plus flagfall of ${:.2f}".format(super().__str__(), self.flagfall)
