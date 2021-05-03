@@ -1,4 +1,4 @@
-"""Test taxi class methods."""
+"""Test Taxi class methods."""
 
 from taxi import Taxi
 
