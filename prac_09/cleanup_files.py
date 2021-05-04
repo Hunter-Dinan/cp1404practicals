@@ -15,11 +15,6 @@ def main():
     # Print a list of all files in current directory
     print("Files in {}:\n{}\n".format(os.getcwd(), os.listdir('.')))
 
-    try:
-        os.mkdir('temp')
-    except FileExistsError:
-        pass
-
     for filename in os.listdir('.'):
         if os.path.isdir(filename):
             continue
