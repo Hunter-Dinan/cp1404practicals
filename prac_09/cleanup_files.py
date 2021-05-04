@@ -30,8 +30,46 @@ def main():
 
 def get_fixed_filename(filename):
     """Return a 'fixed' version of filename."""
-    new_name = filename.replace(" ", "_").replace(".TXT", ".txt")
-    return new_name
+    # Change ' ' to '_'
+    fixed_name_1 = filename.replace(" ", "_").replace(".TXT", ".txt")
+
+    # Change prev char islower() and char isupper(), change to 'sliced word' + ' ' + nextchar.upper()
+    fixed_name_2 = ''
+    slice_index = 0
+    for i, char in enumerate(fixed_name_1):
+        if i > 0:
+            if fixed_name_1[i-1].islower() and char.isupper():
+                name_part = fixed_name_1[slice_index:i] + '_' + char.upper()
+                slice_index = i + 1
+                fixed_name_2 += name_part
+            elif fixed_name_1[i-1].isupper() and char.isupper():    # for OComeAllYeFaithful.txt
+                name_part = fixed_name_1[0] + '_' + char.upper()
+                slice_index = i + 1
+                fixed_name_2 += name_part
+    fixed_name_2 = fixed_name_2 + fixed_name_1[slice_index:]
+
+    # prevchar is '_', change nextchar to nextchar.upper()
+    fixed_name_3 = ''
+    slice_index = 0
+    for i, char in enumerate(fixed_name_2):
+        if i > 0:
+            if fixed_name_2[i-1] == '_':
+                name_part = fixed_name_2[slice_index:i] + char.upper()
+                slice_index = i + 1
+                fixed_name_3 += name_part
+    fixed_name_3 = fixed_name_3 + fixed_name_2[slice_index:]
+
+    # prevchar is '(', change nextchar to nextchar.upper()
+    fixed_name_4 = ''
+    slice_index = 0
+    for i, char in enumerate(fixed_name_3):
+        if i > 0:
+            if fixed_name_3[i - 1] == '(':
+                name_part = fixed_name_3[slice_index:i] + char.upper()
+                slice_index = i + 1
+                fixed_name_4 += name_part
+    fixed_name_4 = fixed_name_4 + fixed_name_3[slice_index:]
+    return fixed_name_4
 
 
 def demo_walk():
