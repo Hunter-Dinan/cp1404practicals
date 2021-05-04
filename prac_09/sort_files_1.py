@@ -8,11 +8,11 @@ FILE_TYPE_INDEX = 1
 
 
 def main():
-    """Program that creates folders for each file type and stores the corresponding files within it."""
+    """Program that creates directories for each file type and stores the corresponding files within it."""
     os.chdir('FilesToSort')
     file_names = os.listdir('.')
     file_types = get_file_types(file_names)
-    create_directories(file_types)
+    create_directory_per_file_type(file_types)
     move_files_to_dir_by_type(file_names)
 
 
@@ -28,7 +28,7 @@ def get_file_types(file_names: list):
     return file_types
 
 
-def create_directories(file_types: list):
+def create_directory_per_file_type(file_types: list):
     """Create directories for each file type in the list."""
     for file_type in file_types:
         try:
