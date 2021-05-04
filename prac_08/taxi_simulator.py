@@ -7,9 +7,12 @@ MENU = """q)uit, c)hoose taxi, d)rive"""
 
 
 def main():
-    """Taxi Simulator where the user can choose taxis to drive."""
+    """Taxi Simulator, the user chooses a taxi to drive and
+    how far they want to drive. The fare for each trip is
+    added to the bill until the user quits the program."""
     taxis = [Taxi("Prius", 100), SilverServiceTaxi("Limo", 100, 2), SilverServiceTaxi("Hummer", 200, 4)]
     current_taxi = None
+    bill = 0
 
     print("Let's drive!")
     print(MENU)
@@ -50,7 +53,7 @@ def display_taxis(taxis: list):
 
 
 def drive_taxi(taxi: object):
-    """Drive taxi the distance inputted."""
+    """Drive taxi the inputted distance."""
     distance = float(input("Drive how far? "))
     taxi.drive(distance)
     print("Your {} cost you ${:.2f}".format(taxi.name, taxi.get_fare()))

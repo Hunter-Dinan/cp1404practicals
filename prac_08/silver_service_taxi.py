@@ -1,10 +1,10 @@
-"""Silver Service Taxi class, specialised version of Taxi"""
+"""SilverServiceTaxi class, specialised version of Taxi"""
 
 from taxi import Taxi
 
 
 class SilverServiceTaxi(Taxi):
-    """Silver Service Taxi, Specialised version of a Taxi class."""
+    """SilverServiceTaxi, Specialised version of a Taxi class."""
     flagfall = 4.5
 
     def __init__(self, name, fuel, fanciness: float):
@@ -23,5 +23,5 @@ class SilverServiceTaxi(Taxi):
         return total_fare
 
     def __str__(self):
-        """Return string representation of Silver Service Taxi instance."""
+        """Return string representation of SilverServiceTaxi instance."""
         return "{} plus flagfall of ${:.2f}".format(super().__str__(), self.flagfall)
