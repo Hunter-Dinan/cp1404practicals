@@ -56,7 +56,6 @@ def demo_walk():
         for filename in filenames:
             old_filename = os.path.join(directory_name, filename)
             new_filename = os.path.join(directory_name, get_fixed_filename(filename))
-            # print(new_filename)
             os.rename(old_filename, new_filename)
 
 
