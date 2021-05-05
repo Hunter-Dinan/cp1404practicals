@@ -1,13 +1,9 @@
-"""
-CP1404/CP5632 Practical
-Demos of various os module examples
-"""
-import shutil
+"""Cleanup filenames in Lyrics/Christmas directory."""
 import os
 
 
 def main():
-    """Demo os module functions."""
+    """Cleanup filenames in Lyrics/Christmas directory."""
     print("Starting directory is: {}".format(os.getcwd()))
 
     os.chdir('Lyrics/Christmas')
@@ -18,68 +14,70 @@ def main():
     for filename in os.listdir('.'):
         if os.path.isdir(filename):
             continue
-
-        new_name = get_fixed_filename(filename)
-        os.rename(filename, new_name)
+        fixed_filename = get_fixed_filename(filename)
+        os.rename(filename, fixed_filename)
 
 
 def get_fixed_filename(filename):
     """Return a 'fixed' version of filename."""
-    # Change ' ' to '_'
-    fixed_name_1 = filename.replace(" ", "_").replace(".TXT", ".txt")
+    # Correction 1: Replace ' ' with '_'
+    fixed_filename = filename.replace(" ", "_").replace(".TXT", ".txt")
 
-    # Change prev char islower() and char isupper(), change to 'sliced word' + ' ' + nextchar.upper()
-    fixed_name_2 = ''
+    # Correction 2: Add '_' to lowercase connected to uppercase, e.g. ObedientDog -> Obedient_Dog.
+    fixed_filename = get_fixed_filename_correction_2(fixed_filename)
+
+    # Correction 3: Add uppercase after '_', e.g. O_little_town_of_bethlehem -> O_Little_Town_Of_Bethlehem
+    fixed_filename = get_fixed_filename_correction_3(fixed_filename)
+
+    # Correction 4: Add uppercase after '(', e.g. Blue_Dog_(jerry) -> Blue_Dog_(Jerry)
+    fixed_filename = get_fixed_filename_correction_4(fixed_filename)
+    return fixed_filename
+
+
+def get_fixed_filename_correction_2(filename):
+    """Add '_' to lowercase connected to uppercase, e.g. ObedientDog -> Obedient_Dog."""
+    fixed_filename = ''
     slice_index = 0
-    for i, char in enumerate(fixed_name_1):
+    for i, char in enumerate(filename):
         if i > 0:
-            if fixed_name_1[i-1].islower() and char.isupper():
-                name_part = fixed_name_1[slice_index:i] + '_' + char.upper()
+            if filename[i - 1].islower() and char.isupper():
+                fixed_name_part = filename[slice_index:i] + '_' + char.upper()
                 slice_index = i + 1
-                fixed_name_2 += name_part
-            elif fixed_name_1[i-1].isupper() and char.isupper():    # for OComeAllYeFaithful.txt
-                name_part = fixed_name_1[0] + '_' + char.upper()
+                fixed_filename += fixed_name_part
+            elif filename[i - 1].isupper() and char.isupper():  # for OComeAllYeFaithful.txt
+                fixed_name_part = filename[i - 1] + '_' + char.upper()
                 slice_index = i + 1
-                fixed_name_2 += name_part
-    fixed_name_2 = fixed_name_2 + fixed_name_1[slice_index:]
+                fixed_filename += fixed_name_part
+    fixed_filename = fixed_filename + filename[slice_index:]
+    return fixed_filename
 
-    # prevchar is '_', change nextchar to nextchar.upper()
-    fixed_name_3 = ''
+
+def get_fixed_filename_correction_3(filename):
+    """Add uppercase after '_', e.g. O_little_town_of_bethlehem -> O_Little_Town_Of_Bethlehem."""
+    fixed_filename = ''
     slice_index = 0
-    for i, char in enumerate(fixed_name_2):
+    for i, char in enumerate(filename):
         if i > 0:
-            if fixed_name_2[i-1] == '_':
-                name_part = fixed_name_2[slice_index:i] + char.upper()
+            if filename[i - 1] == '_':
+                fixed_name_part = filename[slice_index:i] + char.upper()
                 slice_index = i + 1
-                fixed_name_3 += name_part
-    fixed_name_3 = fixed_name_3 + fixed_name_2[slice_index:]
+                fixed_filename += fixed_name_part
+    fixed_filename = fixed_filename + filename[slice_index:]
+    return fixed_filename
 
-    # prevchar is '(', change nextchar to nextchar.upper()
-    fixed_name_4 = ''
+
+def get_fixed_filename_correction_4(filename):
+    """Add uppercase after '(', e.g. Blue_Dog_(jerry) -> Blue_Dog_(Jerry)."""
+    fixed_filename = ''
     slice_index = 0
-    for i, char in enumerate(fixed_name_3):
+    for i, char in enumerate(filename):
         if i > 0:
-            if fixed_name_3[i - 1] == '(':
-                name_part = fixed_name_3[slice_index:i] + char.upper()
+            if filename[i - 1] == '(':
+                fixed_name_part = filename[slice_index:i] + char.upper()
                 slice_index = i + 1
-                fixed_name_4 += name_part
-    fixed_name_4 = fixed_name_4 + fixed_name_3[slice_index:]
-    return fixed_name_4
-
-
-def demo_walk():
-    """Process all subdirectories using os.walk()."""
-    os.chdir('Lyrics')
-    for directory_name, subdirectories, filenames in os.walk('.'):
-        print("Directory:", directory_name)
-        print("\tcontains subdirectories:", subdirectories)
-        print("\tand files:", filenames)
-        print("(Current working directory is: {})".format(os.getcwd()))
-
-        for filename in filenames:
-            old_filename = os.path.join(directory_name, filename)
-            new_filename = os.path.join(directory_name, get_fixed_filename(filename))
-            os.rename(old_filename, new_filename)
+                fixed_filename += fixed_name_part
+    fixed_filename = fixed_filename + filename[slice_index:]
+    return fixed_filename
 
 
 main()
