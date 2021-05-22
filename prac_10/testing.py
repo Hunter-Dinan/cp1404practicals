@@ -30,7 +30,15 @@ def is_long_word(word, length=5):
 
 
 def format_phrase_as_sentence(phrase: str):
-    """///"""
+    """
+    Format phrase as a sentence with capital letter and period.
+    >>> format_phrase_as_sentence('hello')
+    'Hello.'
+    >>> format_phrase_as_sentence('It is an ex parrot.')
+    'It is an ex parrot.'
+    >>> format_phrase_as_sentence('Nice to meet you')
+    'Nice to meet you.'
+    """
     sentence = ""
     if phrase[0].islower():
         sentence += phrase[0].upper()
