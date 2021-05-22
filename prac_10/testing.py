@@ -29,6 +29,19 @@ def is_long_word(word, length=5):
     return len(word) >= length
 
 
+def format_phrase_as_sentence(phrase: str):
+    """///"""
+    sentence = ""
+    if phrase[0].islower():
+        sentence += phrase[0].upper()
+        sentence += phrase[1:]
+    else:
+        sentence += phrase
+    if not phrase[-1] == ".":
+        sentence += "."
+    return sentence
+
+
 def run_tests():
     """Run the tests on the functions."""
     # assert test with no message - used to see if the function works properly
@@ -54,6 +67,10 @@ def run_tests():
 
     new_car = Car()
     assert new_car.fuel == 0
+
+    assert format_phrase_as_sentence("hello") == "Hello."
+    assert format_phrase_as_sentence("It is an ex parrot.") == "It is an ex parrot."
+    assert format_phrase_as_sentence("Nice to meet you") == "Nice to meet you."
 
 
 run_tests()
