@@ -10,7 +10,7 @@ def main():
     wiki_input = input("Enter page title or search phrase:")
     while wiki_input != "":
         wiki_pages = get_wiki_pages_from_input(wiki_input)
-        display_summary_of_wiki_page(wiki_pages)
+        display_information_of_wiki_page(wiki_pages)
         wiki_input = input("Enter page title or search phrase:")
 
 
@@ -20,15 +20,17 @@ def get_wiki_pages_from_input(wiki_input):
     return wiki_pages
 
 
-def display_summary_of_wiki_page(wiki_pages: list):
+def display_information_of_wiki_page(wiki_pages: list):
     """
-    Display summary of first Wikipedia page in the given list of pages,
+    Display title, summary, and URL of first Wikipedia page in the given list of pages,
     that is not a Disambiguation page.
     """
     wiki_page_title = wiki_pages[FIRST_RESULT_INDEX]
     try:
-        print("Page: {}\n"
-              "Summary:\n{}".format(wiki_page_title, wikipedia.summary(wiki_page_title, auto_suggest=False)))
+        wiki_page = wikipedia.page(wiki_page_title, auto_suggest=False)
+        print("Title: {}\n"
+              "Summary:\n{}\n"
+              "URL:{}".format(wiki_page.title, wiki_page.summary.strip(), wiki_page.url))
     except wikipedia.exceptions.DisambiguationError as e:
         print("DisambiguationError, input may refer to:")
         print(e.options)
